@@ -2,16 +2,72 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}HOME{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+        <link rel="stylesheet" href="{{ asset('assets/Styles/Style.css') }}">
 
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            <div id="bg_navBar">
+                <div>
+                    <img src="" alt="logo">
+                </div>
+                <nav id="nav_bar">
+                    <ul class="flex" >
+                        <li><a href="{{ path('home') }}">Home</a></li>
+                        <li><a href="{{ path('categories') }}">Categories</a></li>
+                        <li><a href="{{ path('articles') }}">Articles</a></li>
+                        <li><a href="">Home</a></li>
+                        <li>
+                            <a href="">
+                                <img src="" alt="logoBuy">
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        {% block body %}
+        {% endblock %}
+        <footer>
+            <div  class="flex">
+                <nav>
+                    <ul>
+                        <li>CONTACT</li>
+                        <li><a href=""></a>insta</li>
+                        <li><a href=""></a>face</li>
+                        <li class="border_end" ><a href=""></a>twitter</li>
+                    </ul>
+                </nav>
+                <nav>
+                    <ul>
+                        <li>AIDE & CONSEIL</li>
+                        <li>Lorem ipsum </li>
+                        <li>Lorem ipsum</li>
+                        <li class="border_end">Lorem ipsum</li>
+                    </ul>
+                </nav>
+                <nav>
+                    <ul>
+                        <li>NOS ANNONCE</li>
+                        <li>Lorem ipsum</li>
+                        <li>Lorem ipsum</li>
+                        <li class="border_end">Lorem ipsum</li>
+                    </ul>
+                </nav>
+                <nav>
+                    <ul>
+                        <li>A PROPOS</li>
+                        <li>Lorem ipsum</li>
+                        <li>Lorem ipsum</li>
+                        <li>Lorem ipsum</li>
+                    </ul>
+                </nav>
+            </div>
+        </footer>
     </body>
 </html>

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <main>
+        <section>
+            <article  class="bloc_articleSolo" >
+                <h1>Catogories :</h1>
+                {% for category in categories %}
+                <p> {{ category.title }}</p>
+                {% endfor %}
+            </article>
+        </section>
+    </main>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+        <section>
+            <h1> Articles :</h1>
+            <article class="flex_article">
+                    {% for article in articles %}
+                        {% if(article.isPublished) %}
+                            <div  class = "bloc_article">
+                                <h2>{{ article.title }}</h2>
+                                <div class="img_article">
+                                    <img src="{{ article.image }}" alt="">
+                                </div>
+                                <h3><a href="{{ path("article_choice", {idArticle: article.id}) }}">clic</a></h3>
+                                {#<p>{{ article.description }}</p>#}
+                                {#<p>{{ article.content }}</p>#}
+                                {#<h3>Date de creation : {{ article.createdAt | date("m-d-Y") }}</h3>#}
+                                {#<h3>Date de mise à jour : {{ article.updatedAt | date("m-d-Y") }}</h3>#}
+                            </div>
+                    {% endif %}
+                    {% endfor %}
+
+            </article>
+        </section>
+    </main>
+{% endblock %}

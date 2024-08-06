@@ -29,7 +29,7 @@
                             <td>{{ article.category.title }}</td>
                             <td> {{ article.createdAt | date("m-d-Y") }}</td>
                             <td>
-                                {% if( article.published ) %}
+                                {% if( article.isPublished ) %}
                                     <p>Oui</p>
                                 {% else %}
                                     <p>Non</p>
@@ -37,7 +37,7 @@
                             </td>
                             <td>
                                 <button><a href="{{ path('admin_article_delete', {idArticle: article.id}) }}">Supprimer</a></button>
-                                {# <button><a href="{{ path("update_article", {id: pokemon.id}) }}">Modifier</a></button> #}
+                                <button><a href="{{ path("admin_update_article", {idArticle: article.id}) }}">Modifier</a></button>
                             </td>
                         </tr>
                     </tbody>

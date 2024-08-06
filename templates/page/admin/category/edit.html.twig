@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+    <section>
+        <h1>Edit Category</h1>
+        <article>
+            <h1>Modifier la catégorie</h1>
+            {{ form(categoryForm) }}
+
+            {#  <a href="{{ path('admin_list_categories') }}">back to list</a> #}
+        </article>
+    </section>
+
+{% endblock %}

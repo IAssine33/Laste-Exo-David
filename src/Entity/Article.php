@@ -27,7 +27,17 @@ class Article
     private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: true, onDelete: "SET NULL")]
     private ?Category $category = null;
+
+    // Permet de supprimer en "cascade"
+    // les articles liés à une catégorie
+    // quand la catégorie est supprimée
+    //#[ORM\JoinColumn(onDelete: "CASCADE")]
+   //----------------------------------------
+    // quand la catégorie est supprimée
+        // on supprime la valeur de category_id dans les articles
+        // liés à la catégorie
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;

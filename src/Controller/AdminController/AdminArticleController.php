@@ -19,7 +19,7 @@ class AdminArticleController extends AbstractController
 
         $articles = $articleRepository->findAll();
 
-        return $this->render('page/admin/admine_liste_article.html.twig', ['articles' => $articles]);
+        return $this->render('page/admin/article/admine_liste_article.html.twig', ['articles' => $articles]);
     }
 
 
@@ -29,7 +29,7 @@ class AdminArticleController extends AbstractController
         $article = $articleRepository->find($idArticle);
 
         if (!$article) {
-            $html404 = $this->renderView('page/admin/adminE404.html.twig');
+            $html404 = $this->renderView('page/admin/article/adminE404.html.twig');
             return new Response($html404, 404);
         }
         try {
@@ -41,7 +41,7 @@ class AdminArticleController extends AbstractController
 
         }catch (\Exception $exception){
 
-            return $this->renderView('page/admin/adminE404.html.twig', ['errorMessage' => $exception->getMessage()]);
+            return $this->renderView('page/admin/article/adminE404.html.twig', ['errorMessage' => $exception->getMessage()]);
 
         }
 
@@ -54,6 +54,7 @@ class AdminArticleController extends AbstractController
     public function add_article(Request $request, EntityManagerInterface $entityManager){
 
         $article = new Article();
+
         $form_add_article = $this->createForm(ArticleType::class, $article);
         $form_add_article->handleRequest($request);
 
@@ -64,8 +65,33 @@ class AdminArticleController extends AbstractController
             $this->addFlash('success', 'article enregistré');
 
         }
-        return $this->render('page/admin/admin_add_article.html.twig', ['articleForm' => $form_add_article->createView()]);
+        return $this->render('page/admin/article/admin_add_article.html.twig', ['articleForm' => $form_add_article->createView()]);
 
     }
+
+    #[Route('/admin/articles/update/{idArticle}', 'admin_update_article')]
+    public function updateArticle(int $idArticle, Request $request, EntityManagerInterface $entityManager, ArticleRepository $articleRepository)
+    {
+        $article = $articleRepository->find($idArticle);
+
+        $articleCreateForm = $this->createForm(ArticleType::class, $article);
+
+        $articleCreateForm->handleRequest($request);
+
+        if ($articleCreateForm->isSubmitted() && $articleCreateForm->isValid()) {
+            $entityManager->persist($article);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'article enregistré');
+        }
+
+        $articleCreateFormView = $articleCreateForm->createView();
+
+        return $this->render('page/admin/article/update_article.html.twig', [
+            'articleForm' => $articleCreateFormView
+        ]);
+
+    }
+
 
 }

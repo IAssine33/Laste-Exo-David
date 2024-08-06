@@ -1,0 +1,41 @@
+{% extends 'page/admin/baseAdmin.html.twig' %}
+
+{% block body %}
+    <main>
+        <section>
+            <h1> Catégories :</h1>
+            <article>
+                <table border="1" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Color</th>
+                        <th>Date de creation</th>
+                        <th>Date M à j</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    {% for category in categories %}
+
+                        <tbody>
+                        <tr>
+                            <td>{{ category.title }}</td>
+                            <td>{{ category.color }}</td>
+                            <td> {{ category.createdAt | date("m-d-Y") }}</td>
+                            <td>{{ category.updatedAt | date("m-d-Y") }} </td>
+                            <td>
+                                <button><a href="{{ path('admin_category', {idCategory: category.id}) }}">Supprimer</a></button>
+                                <button><a href="{{ path("admin_update_category", {idCategory: category.id}) }}">Modifier</a></button>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                        {#<h3>Date de mise à jour : {{ article.updatedAt | date("m-d-Y") }}</h3>#}
+
+                    {% endfor %}
+                </table>
+
+            </article>
+        </section>
+    </main>
+{% endblock %}

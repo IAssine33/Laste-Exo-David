@@ -3,6 +3,7 @@
 namespace App\Controller\PublicController;
 
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,6 +15,7 @@ class ArticleController extends AbstractController
     public function liste_articles(ArticleRepository $articleRepository){
 
         $articles = $articleRepository->findAll();
+
         return $this->render('page/article/liste_articles.html.twig', ['articles' => $articles]);
     }
 
@@ -22,7 +24,7 @@ class ArticleController extends AbstractController
     {
         $article = $articleRepository->find($idArticle);
 
-        if (!$article || !$article->isPublished()) {
+        if (!$article || !$article->getIsPublished()) {
             $html404 = $this->renderView('page/404.html.twig');
             return new Response($html404, 404);
         }

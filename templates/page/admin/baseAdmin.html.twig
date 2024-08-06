@@ -17,6 +17,13 @@
             <img src="" alt="logo">
         </div>
         <h1 id="text_center"> ADMIN </h1>
+        <nav>
+            <ul>
+                <li><a href="{{ path('admin_article') }}">Gérer les articles</a></li>
+                <li><a href="{{ path('admin_category') }}">Gérerles catégories</a></li>
+                <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+            </ul>
+        </nav>
     </div>
     {#
     vérifie si des messages flashes ont été enregistrés

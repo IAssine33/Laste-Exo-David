@@ -27,9 +27,7 @@ class Category
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    /**
-     * @var Collection<int, Article>
-     */
+
     #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'category')]
     private Collection $articles;
 
